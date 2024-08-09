@@ -1,7 +1,9 @@
 provider "aws" {
-  access_key = "<INSERT_YOUR_AWS_ACCESS_KEY_HERE>"
-  secret_key = "<INSERT_YOUR_AWS_SECRET_KEY_HERE>"
+  access_key = ""
+  secret_key = ""
   region     = "us-east-1"
+  # HowTo assume IAM role https://registry.terraform.io/providers/hashicorp/aws/latest/docs#assuming-an-iam-role
+  profile = "default"
 }
 
 # TODO
@@ -14,3 +16,15 @@ provider "aws" {
 # Be sure to tag it with:
 # - "Name" to "exercise_0010"
 # - "Terraform" to true
+
+
+resource "aws_instance" "exercise_0000" {
+  ami           = "ami-07ebfd5b3428b6f4d"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name      = "exercise_0010"
+    Terraform = true
+    OReilyLab = "terraform_in_cloud"
+  }
+}
